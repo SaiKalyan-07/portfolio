@@ -1,0 +1,92 @@
+/* ============================================================
+   DESIGN TOKENS
+   Single source of truth for color, spacing, typography, and
+   motion values used across every section. Every section file
+   should reference these — no hardcoded rgba(), px, or ms
+   values for anything defined here.
+   ============================================================ */
+
+@theme {
+  /* ── Brand colors ─────────────────────────────────────── */
+  --color-accent:       #00ff88;
+  --color-accent-dim:   rgba(0, 255, 136, 0.6);
+  --color-accent-soft:  rgba(0, 255, 136, 0.1);
+  --color-accent-glow:  rgba(0, 255, 136, 0.3);
+
+  /* ── Background scale ─────────────────────────────────── */
+  --color-bg-900:  #0a0a0a;
+  --color-bg-800:  #111111;
+  --color-bg-700:  #1a1a1a;
+  --color-bg-600:  #222222;
+
+  /* ── Text scale ───────────────────────────────────────── */
+  --color-text-primary:   #e0e0e0;
+  --color-text-secondary: #b0b0b0;
+  --color-text-muted:     #808080;
+
+  /* ── Font family ──────────────────────────────────────── */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'Berkeley Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* ── Spacing ──────────────────────────────────────────────
+     --spacing-section-y formalizes the 100px vertical rhythm
+     already used identically across About, Skills, Projects,
+     Experience, Education, Certifications, and Contact
+     (previously six separate py-[100px] instances).           */
+  --spacing-section-y: 6.25rem; /* 100px */
+
+  /* ── Typography scale ─────────────────────────────────────
+     1.25 modular ratio, base = 1rem body text. This is a
+     standard default (not derived from prior site content —
+     no consistent scale existed before this). Section titles
+     that need responsive sizing still use clamp(), with
+     --text-display as the clamp() upper bound.                */
+  --text-caption:  0.8rem;    /* 12.8px — footer meta, badges   */
+  --text-small:    0.9rem;    /* 14.4px — footer nav, sub-text  */
+  --text-body:     1rem;      /* 16px  — base paragraph size    */
+  --text-h3:       1.25rem;   /* 20px  — card titles            */
+  --text-h2:       1.563rem;  /* ~25px — sub-section headings   */
+  --text-h1:       1.953rem;  /* ~31px — page-level headings    */
+  --text-display:  2.441rem;  /* ~39px — hero/section-title cap */
+
+  /* ── Motion: duration ─────────────────────────────────────
+     Standard fast/base/slow bands (Material Design convention),
+     not derived from prior bespoke per-component durations.    */
+  --duration-fast: 150ms; /* micro-interactions: icon/color change   */
+  --duration-base: 300ms; /* default: card hover lift, focus states  */
+  --duration-slow: 600ms; /* entrance reveals, section transitions   */
+
+  /* ── Motion: easing ───────────────────────────────────────
+     --ease-emphasized preserves the existing cert-card bounce
+     curve, now named and reusable rather than a bespoke
+     one-off value.                                             */
+  --ease-standard:   cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-emphasized: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ── Glow shadows ─────────────────────────────────────────
+     Replaces ad hoc rgba(0,255,136,0.3)-style box-shadow
+     values scattered across HTML/JS with three named,
+     reusable intensities.                                     */
+  --shadow-glow-sm: 0 0 10px color-mix(in oklch, var(--color-accent) 30%, transparent);
+  --shadow-glow-md: 0 0 20px color-mix(in oklch, var(--color-accent) 40%, transparent);
+  --shadow-glow-lg: 0 0 40px color-mix(in oklch, var(--color-accent) 30%, transparent);
+}
+
+/* ── Legacy runtime custom properties ──────────────────────
+   Kept as-is: these are consumed directly by JS (e.g.
+   utils.js / animation modules read rgba(var(--accent-rgb),...)
+   patterns). Not duplicated into @theme since Tailwind v4
+   already exposes @theme values as real :root custom
+   properties automatically — these three exist because they
+   encode a *component* (comma-separated RGB) that @theme's
+   hex/rgba values don't provide directly.                     */
+:root {
+  --accent:       #00ff88;
+  --accent-rgb:   0, 255, 136;
+  --bg-900:       #0a0a0a;
+  --bg-800:       #111111;
+  --bg-700:       #1a1a1a;
+  --bg-600:       #222222;
+  --text-primary: #e0e0e0;
+  --text-muted:   #b0b0b0;
+}

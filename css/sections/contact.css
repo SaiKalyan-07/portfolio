@@ -1,0 +1,79 @@
+/* ============================================================
+   CONTACT
+   No form — link-led. Heading matches the shared centered
+   section-title/title-underline pattern used everywhere else
+   on the site (Skills, Projects, Experience/Education,
+   Certifications), rather than copying the left-aligned
+   heading from the reference we drew ideas from.
+   ============================================================ */
+
+.contact-body {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-statement {
+  font-size: var(--text-h1);
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 1.75rem;
+}
+
+.contact-cta-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.contact-cta-btn {
+  border: 1.5px solid rgba(var(--accent-rgb), 0.5);
+  color: var(--accent);
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  font-size: var(--text-small);
+  font-weight: 600;
+  background: transparent;
+  transition: border-color var(--duration-base) var(--ease-standard),
+              background var(--duration-base) var(--ease-standard);
+}
+.contact-cta-btn:hover {
+  border-color: rgba(var(--accent-rgb), 0.9);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+.contact-email-text {
+  font-size: var(--text-small);
+  color: var(--text-muted);
+}
+
+.contact-divider {
+  height: 1px;
+  background: rgba(var(--accent-rgb), 0.1);
+  margin-bottom: 2rem;
+}
+
+.contact-link-list {
+  display: flex;
+  gap: 1.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.contact-link-item {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.contact-link-arrow {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .contact-statement { font-size: var(--text-h2); }
+  .contact-link-list { gap: 1.25rem; }
+}

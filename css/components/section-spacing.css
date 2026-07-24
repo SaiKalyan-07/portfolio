@@ -1,0 +1,12 @@
+/* ============================================================
+   SECTION SPACING
+   One shared class so every top-level section uses the exact
+   same vertical rhythm — no section can silently drift to its
+   own asymmetric padding (which is what caused Skills' tighter
+   gap to Projects compared to every other section pair).
+   ============================================================ */
+
+.section-py {
+  padding-top: var(--spacing-section-y);
+  padding-bottom: var(--spacing-section-y);
+}

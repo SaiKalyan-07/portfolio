@@ -1,58 +1,59 @@
 /**
  * typewriter.js
- * Typewriter effect on the hero greeting.
+ * Looping typewriter effect on the hero role line.
+ * Cycles through ROLE_PHRASES forever: type, pause, delete, next.
  *
- * Owns the .greeting span completely:
- *   - HTML has no static text in that span
- *   - No CSS animation on that span (would fight this)
- *   - This module sets opacity, types, adds cursor blink
+ * Owns the #hero-role-typed span completely — no static text,
+ * no CSS animation on that span (would fight this).
  */
 
+import { ROLE_PHRASES } from '../data/portfolio.js';
+
+const TYPE_SPEED   = 65;
+const DELETE_SPEED = 35;
+const PAUSE_AFTER_TYPE = 1400;
+const PAUSE_AFTER_DELETE = 220;
+
 export function initTypewriter() {
-  const greeting = document.querySelector('.hero-title .greeting');
-  if (!greeting) {
-    console.warn('[typewriter] .hero-title .greeting not found');
+  const el = document.querySelector('#hero-role-typed');
+  if (!el) {
+    console.warn('[typewriter] #hero-role-typed not found');
+    return;
+  }
+  if (!ROLE_PHRASES || !ROLE_PHRASES.length) {
+    console.warn('[typewriter] ROLE_PHRASES is empty');
     return;
   }
 
-  // Wait for hero entrance animations to settle before typing starts
-  setTimeout(() => typeWrite(greeting, "Hello, I'm Sai Kalyan", 85), 800);
-}
+  let phraseIndex = 0;
+  let charIndex   = 0;
+  let deleting    = false;
 
-function typeWrite(element, text, speed = 85) {
-  element.textContent = '';
-  element.style.opacity = '1';
+  function tick() {
+    const full = ROLE_PHRASES[phraseIndex];
 
-  // Blinking cursor character appended during typing
-  let i = 0;
-
-  function type() {
-    if (i < text.length) {
-      element.textContent = text.slice(0, i + 1) + '|';
-      i++;
-      setTimeout(type, speed + Math.random() * 35);
+    if (!deleting) {
+      charIndex++;
+      if (charIndex > full.length) {
+        deleting = true;
+        setTimeout(tick, PAUSE_AFTER_TYPE);
+        return;
+      }
+      el.textContent = full.slice(0, charIndex);
+      setTimeout(tick, TYPE_SPEED + Math.random() * 35);
     } else {
-      // Typing done — blink cursor then remove it
-      element.textContent = text;
-      blinkCursor(element, text);
+      charIndex--;
+      if (charIndex < 0) {
+        deleting = false;
+        charIndex = 0;
+        phraseIndex = (phraseIndex + 1) % ROLE_PHRASES.length;
+        setTimeout(tick, PAUSE_AFTER_DELETE);
+        return;
+      }
+      el.textContent = full.slice(0, charIndex);
+      setTimeout(tick, DELETE_SPEED);
     }
   }
 
-  type();
-}
-
-function blinkCursor(element, text) {
-  let visible = true;
-  let blinks  = 0;
-  const MAX   = 6; // blink 6 times then disappear cleanly
-
-  const interval = setInterval(() => {
-    element.textContent = visible ? text + '|' : text;
-    visible = !visible;
-    blinks++;
-    if (blinks >= MAX * 2) {
-      clearInterval(interval);
-      element.textContent = text;
-    }
-  }, 500);
+  tick();
 }

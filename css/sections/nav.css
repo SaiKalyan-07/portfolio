@@ -1,0 +1,141 @@
+/* ============================================================
+   NAVIGATION
+   Desktop nav filled active-pill, mobile drawer, hamburger,
+   scroll shadow + condense. Behavior owned by js/modules/navbar.js.
+   ============================================================ */
+
+/* ── Desktop nav menu capsule ───────────────────────────────
+   Wraps all links in one rounded container, matching the
+   Claude Design reference — links sit tightly inside a single
+   pill-shaped background rather than floating individually.  */
+.nav-menu {
+  background: rgba(26, 26, 26, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 9999px;
+  padding: 5px;
+  gap: 4px;
+  align-items: center;
+}
+
+/* ── Desktop nav link ─────────────────────────────────────── */
+.nav-link {
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 8px 15px;
+  border-radius: 9999px;
+  white-space: nowrap;
+  z-index: 1; /* sit above .nav-active-pill */
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+/* ── Active-link filled pill ────────────────────────────────
+   Solid accent-colored pill slides behind whichever link is
+   active. Positioned in JS (navbar.js) via getBoundingClientRect
+   against .nav-menu, which needs position:relative (set in
+   index.html). Hidden (opacity 0) until first positioned, and
+   on mobile where .nav-menu itself is hidden.                */
+.nav-active-pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: transform var(--duration-base) var(--ease-standard),
+              width var(--duration-base) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+}
+
+.nav-link:hover {
+  color: var(--accent);
+}
+.nav-link.active {
+  color: var(--bg-900); /* dark text for contrast against solid accent pill */
+  font-weight: 700;
+}
+.nav-link.active:hover {
+  color: var(--bg-900); /* stays dark even on hover while active */
+}
+
+/* ── Navbar scroll shadow + condense ───────────────────────
+   Adds depth once scrolled past the hero, and slightly
+   reduces vertical padding + logo size so the nav takes up
+   marginally less space during scroll — without hiding it
+   (see the Navigation section discussion for why we're not
+   doing a hide/reveal pattern).                              */
+.navbar-scrolled {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(var(--accent-rgb), 0.08);
+}
+.navbar-scrolled .max-w-\[1200px\] {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+.navbar .max-w-\[1200px\] {
+  transition: padding var(--duration-base) var(--ease-standard);
+}
+.navbar-scrolled #nav-logo-name {
+  font-size: var(--text-body);
+}
+#nav-logo-name {
+  transition: font-size var(--duration-base) var(--ease-standard);
+}
+
+/* ── Logo wordmark accent period ──────────────────────────
+   Small brand touch — a contrasting-color period after the
+   name, borrowed from the reference nav we reviewed.          */
+#nav-logo-name::after {
+  content: '.';
+  color: var(--text-primary);
+}
+
+/* ── Mobile drawer ─────────────────────────────────────────
+   Lives outside <nav> in the HTML to escape the navbar's
+   backdrop-filter stacking context.                          */
+.mobile-menu {
+  background: #0a0a0a !important;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+.mobile-menu.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-link {
+  font-size: var(--text-h2);
+  opacity: 0;
+}
+
+/* Stagger-animate links when menu opens */
+.mobile-menu.is-open .mobile-link {
+  animation: mobileNavIn 0.35s var(--ease-standard) forwards;
+}
+.mobile-menu.is-open .mobile-link:nth-child(2)  { animation-delay: 0.05s; }
+.mobile-menu.is-open .mobile-link:nth-child(3)  { animation-delay: 0.10s; }
+.mobile-menu.is-open .mobile-link:nth-child(4)  { animation-delay: 0.15s; }
+.mobile-menu.is-open .mobile-link:nth-child(5)  { animation-delay: 0.20s; }
+.mobile-menu.is-open .mobile-link:nth-child(6)  { animation-delay: 0.25s; }
+.mobile-menu.is-open .mobile-link:nth-child(7)  { animation-delay: 0.30s; }
+.mobile-menu.is-open .mobile-link:nth-child(8)  { animation-delay: 0.35s; }
+
+/* ── Hamburger → X transform ───────────────────────────────  */
+.hamburger.is-open .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.is-open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-open .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Mobile tightened padding ──────────────────────────────  */
+@media (max-width: 767px) {
+  .navbar .max-w-\[1200px\] {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

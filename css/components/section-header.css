@@ -1,0 +1,24 @@
+/* ============================================================
+   SECTION HEADER
+   Centered heading + underline, shared by every content
+   section (About, Skills, Projects, Experience, Education,
+   Contact). Hero has its own separate treatment.
+   ============================================================ */
+
+.section-title {
+  font-size: clamp(2rem, 4vw, var(--text-display));
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  text-shadow: var(--shadow-glow-sm);
+}
+
+.title-underline {
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), rgba(var(--accent-rgb), 0.3));
+  margin: 0 auto;
+  border-radius: 2px;
+  box-shadow: var(--shadow-glow-md);
+}

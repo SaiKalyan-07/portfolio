@@ -1,0 +1,97 @@
+/* ============================================================
+   CUSTOM CURSOR + CLICK RIPPLE
+   Driven by js/modules/cursor.js and js/modules/ripple.js.
+   ============================================================ */
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.cursor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: transform var(--duration-fast) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+  z-index: 10001;
+  box-shadow: var(--shadow-glow-sm);
+  opacity: 0; /* hidden until mouse enters viewport */
+}
+
+.cursor-trail {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(var(--accent-rgb), 0.3);
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  transition: transform var(--duration-base) var(--ease-standard),
+              width var(--duration-base) var(--ease-standard),
+              height var(--duration-base) var(--ease-standard),
+              opacity var(--duration-slow) var(--ease-standard);
+  opacity: 0; /* hidden until mouse enters viewport */
+}
+
+/* Both parts visible once mouse is active on page */
+.custom-cursor.is-active .cursor-dot,
+.custom-cursor.is-active .cursor-trail {
+  opacity: 1;
+}
+
+.cursor-hover .cursor-dot {
+  transform: translate(-50%, -50%) scale(1.5);
+  box-shadow: var(--shadow-glow-lg);
+}
+
+.cursor-hover .cursor-trail {
+  width: 60px;
+  height: 60px;
+  border-color: rgba(var(--accent-rgb), 0.6);
+}
+
+.cursor-text .cursor-dot { opacity: 0 !important; }
+
+.cursor-text .cursor-trail {
+  background: var(--accent);
+  color: var(--bg-900);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: var(--shadow-glow-md);
+}
+
+/* Cursor particle trail */
+.cursor-particle {
+  position: fixed;
+  width: 3px;
+  height: 3px;
+  background: rgba(var(--accent-rgb), 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  animation: particleFade 1s ease-out forwards;
+}
+
+/* Click ripple */
+.click-ripple {
+  position: fixed;
+  border-radius: 50%;
+  background: rgba(var(--accent-rgb), 0.4);
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  width: 30px;
+  height: 30px;
+  z-index: 9999;
+  box-shadow: var(--shadow-glow-md);
+}

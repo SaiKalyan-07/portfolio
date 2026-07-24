@@ -1,0 +1,180 @@
+/* ============================================================
+   ABOUT & SKILLS (merged section)
+   ============================================================ */
+
+.about-card-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-caption);
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+/* ── Row 1: Overview + Location ────────────────────────────  */
+.about-skills-row {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  margin-bottom: 24px;
+}
+
+.about-card {
+  background: var(--bg-800);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 34px;
+}
+
+.about-overview-text {
+  font-size: var(--text-body);
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+.about-card--location {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.location-icon {
+  font-size: 34px;
+  color: var(--accent);
+  margin-top: 12px;
+}
+
+.location-country {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.location-status {
+  font-size: var(--text-small);
+  color: var(--text-muted);
+}
+
+/* ── Row 2: Skills ──────────────────────────────────────────  */
+.skills-card {
+  background: var(--bg-800);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 34px;
+}
+
+.skills-grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.skill-category-card {
+  background: var(--bg-700);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 22px;
+}
+
+.skill-category-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.skill-category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: color-mix(in srgb, var(--cat-color) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cat-color) 30%, transparent);
+  border-radius: 9999px;
+  padding: 6px 13px;
+}
+
+.skill-category-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cat-color);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--cat-color) 70%, transparent);
+}
+
+.skill-category-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--cat-color);
+}
+
+.skill-category-count {
+  font-family: var(--font-mono);
+  font-size: var(--text-small);
+  color: var(--text-muted);
+}
+
+.skill-items-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--bg-900);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: var(--text-small);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.devicon-skill-icon,
+.simpleicon-skill-icon,
+.fa-skill-icon {
+  width: 14px;
+  height: 14px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.local-skill-icon {
+  height: 14px;
+  width: auto;
+  max-width: 28px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────  */
+@media (max-width: 767px) {
+  #about {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+  .about-skills-row {
+    grid-template-columns: 1fr;
+  }
+  .skills-grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+}

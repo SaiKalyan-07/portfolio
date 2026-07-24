@@ -1,0 +1,32 @@
+/* ============================================================
+   CERTIFICATIONS
+   Grid: 1 col mobile -> 2 col tablet -> 3 col desktop, with
+   a lone trailing card on row 3 centered.
+   NOTE: the achievement-popup .show class issue (toggled by
+   certifications.js but with no matching CSS rule) will be
+   fixed during this section's rebuild, not here.
+   ============================================================ */
+
+.certs-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .certs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .certs-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* 7 cards: last card alone on row 3 -> center it */
+  .certs-grid .cert-card:last-child:nth-child(3n - 2) {
+    grid-column: 1 / -1;
+    max-width: 380px;
+    margin-inline: auto;
+    width: 100%;
+  }
+}

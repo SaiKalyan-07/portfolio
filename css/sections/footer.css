@@ -1,0 +1,85 @@
+/* ============================================================
+   FOOTER
+   Narrowed scope after Contact went link-led — no email/phone/
+   social icons/résumé link here anymore (Contact's job now),
+   no Quick Links nav (redundant given the navbar is always
+   visible, not hide-on-scroll). Just: location + back-to-top,
+   a large watermark name, and copyright + location again.
+   ============================================================ */
+
+.footer-main {
+  position: relative;
+  background: #0a0a0a;
+}
+
+.footer-top-bar {
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(var(--accent-rgb), 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-caption);
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.footer-back-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-size: var(--text-caption);
+  letter-spacing: 0.05em;
+  transition: color var(--duration-base) var(--ease-standard);
+}
+.footer-back-top:hover {
+  color: var(--accent);
+}
+.footer-back-top-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color var(--duration-base) var(--ease-standard),
+              transform var(--duration-base) var(--ease-standard);
+}
+.footer-back-top:hover .footer-back-top-icon {
+  border-color: rgba(var(--accent-rgb), 0.6);
+  transform: translateY(-2px);
+}
+
+/* Fluid sizing — the full name stays legible at every viewport
+   width rather than relying on incidental edge-clipping.       */
+.footer-watermark-wrap {
+  padding: 1.75rem 0 0;
+  overflow: hidden;
+}
+.footer-watermark {
+  font-size: clamp(2.25rem, 9vw, 5.5rem);
+  font-weight: 700;
+  color: #141414;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  margin: 0;
+  text-align: center;
+}
+
+.footer-bottom-bar {
+  padding: 1.25rem 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-caption);
+  color: var(--text-muted);
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.footer-meta {
+  margin: 0;
+}

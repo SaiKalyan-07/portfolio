@@ -9,33 +9,31 @@
  */
 
 import { renderAll }           from './renderer.js';
-import { initCursor }          from './modules/cursor.js';
-import { initMagneticButtons } from './modules/magneticButtons.js';
 import { initRipple }          from './modules/ripple.js';
 import { initNavbar }          from './modules/navbar.js';
 import { initSmoothScroll }    from './modules/smoothScroll.js';
 import { initParallax }        from './modules/parallax.js';
-import { initHoverEffects }    from './modules/hover.js';
 import { initObserver }        from './modules/observer.js';
-import { initContact }         from './modules/contact.js';
+
 import { initTypewriter }      from './modules/typewriter.js';
 import { initProfileImage }    from './modules/profileImage.js';
+// interactions.js replaces cursor.js, hover.js, and
+// magneticButtons.js (all three deleted — migration complete).
+import { initInteractions }    from './modules/interactions.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Must be first — all other modules query DOM that renderer creates
   renderAll();
 
-  initCursor();
-  initMagneticButtons();
   initRipple();
   initNavbar();
   initSmoothScroll();
   initParallax();
-  initHoverEffects();
   initObserver();
-  initContact();
+  
   initTypewriter();
   initProfileImage();
+  initInteractions(); // cursor + tilt/hover + magnetic pull
 
   console.log('🚀 Sai Kalyan Portfolio loaded');
   console.log('⚛️  React.js | Node.js | Full-Stack Engineer');

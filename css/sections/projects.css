@@ -1,0 +1,103 @@
+/* ============================================================
+   PROJECTS
+   Full-width stacked cards — no image/icon area (no screenshots
+   available yet; revisit once they are). Bullets carry all the
+   content, so copy quality matters more here than in most
+   sections. Deliberately zero hover feedback right now — see
+   the Deferred Interaction Decisions list; this is intentional,
+   not an oversight, pending the dedicated animation/interaction
+   pass across the whole site.
+   ============================================================ */
+
+.projects-subtitle {
+  margin-top: 0.75rem;
+  font-size: var(--text-body);
+  color: var(--text-muted);
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.project-card {
+  border-radius: 16px;
+  border: 1px solid rgba(var(--accent-rgb), 0.1);
+  background: linear-gradient(135deg, #1a1a1a, #222222);
+  padding: 2rem;
+}
+
+.project-title {
+  font-size: var(--text-h1);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+.project-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.project-bullets li {
+  position: relative;
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.project-bullets li::before {
+  content: '\25B8';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+.project-tag {
+  font-size: var(--text-caption);
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(var(--accent-rgb), 0.08);
+}
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--text-small);
+  color: var(--text-muted);
+}
+.project-link i {
+  font-size: 1rem;
+}
+
+/* ── Mobile ────────────────────────────────────────────────  */
+@media (max-width: 640px) {
+  .project-card {
+    padding: 1.25rem;
+  }
+  .project-title {
+    font-size: clamp(1.5rem, 6vw, var(--text-h1));
+  }
+  .project-links {
+    gap: 0.875rem;
+  }
+}

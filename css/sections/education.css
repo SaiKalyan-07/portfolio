@@ -1,0 +1,62 @@
+/* ============================================================
+   EDUCATION
+   Compact list — deliberately plain rows, no animated counters
+   or progress bars. This removes the old progress-bar-width
+   bug entirely (education.js previously hardcoded bar widths
+   instead of reading actual scores) rather than patching it,
+   since the compact treatment has no bar to animate at all.
+   ============================================================ */
+
+.education-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.08);
+}
+.education-row:last-child {
+  border-bottom: none;
+}
+
+.exp-edu-logo-badge--sm {
+  width: 48px;
+  height: 48px;
+}
+
+.education-row-main {
+  flex: 1;
+  min-width: 0;
+}
+.education-degree {
+  font-size: var(--text-body);
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.education-institution {
+  font-size: var(--text-small);
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
+.education-row-meta {
+  text-align: right;
+  flex-shrink: 0;
+}
+.education-score {
+  display: block;
+  font-size: var(--text-small);
+  color: var(--accent);
+  font-weight: 500;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 640px) {
+  .education-row {
+    flex-wrap: wrap;
+  }
+  .education-row-meta {
+    text-align: left;
+    margin-left: calc(40px + 1rem);
+    margin-top: 0.25rem;
+  }
+}
